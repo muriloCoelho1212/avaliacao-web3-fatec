@@ -69,13 +69,10 @@ export default function CadastroVacinaPage() {
 
     async function carregarVacina() {
       try {
-        const response = await fetch(`${API_BASE_URL}/vacinas`);
-        if (!response.ok) throw new Error("Erro ao buscar vacinas");
+        const response = await fetch(`${API_BASE_URL}/vacinas/${vacinaId}`);
+        if (!response.ok) throw new Error("Erro ao buscar vacina");
 
-        const vacinas = await response.json();
-        const vacina = vacinas.find((v: any) => v.id === Number(vacinaId));
-
-        if (!vacina) return;
+        const vacina = await response.json();
 
         setDadosIniciais({
           nomeVacina: vacina.nome || "",
